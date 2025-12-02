@@ -1,3 +1,5 @@
+import SearchBar from "./components/SearchBar";
+
 function App() {
   return (
     <div className="min-h-screen">
@@ -8,7 +10,9 @@ function App() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">{/* Searchbar */}</main>
+      <main className="container mx-auto px-4 py-6">
+        <SearchBar />
+      </main>
 
       <footer className="container mx-auto px-4 py-8  text-sm text-gray-500">
         2025
