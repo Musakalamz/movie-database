@@ -26,7 +26,21 @@ async function request(url) {
   return data;
 }
 
+export async function searchMovies(query, page = 1, opts = {}) {
+  if (!query) return { Search: [], totalResults: "0", Response: "True" };
+  const { type, year } = opts;
+  const params = { s: query, page };
+  if (type && type !== "all") params.type = type;
+  if (year) params.y = year;
+  const url = buildUrl(params);
+  return request(url);
+}
+
 export async function getMovie(imdbID) {
   const url = buildUrl({ i: imdbID, plot: "full" });
   return request(url);
+}
+
+export function clearCache() {
+  cache.clear();
 }
