@@ -6,7 +6,7 @@ function SearchBar() {
           type="text"
           id="search-input"
           placeholder="Search movies..."
-          className="w-full rounded-full border border-grey-300 px-4 py-2 focus:ouyline-none focus:ring focus:ring-blue-200 dark:border-gray-700 dark:bg-grey-800 dark:text-grey-100 "
+          className="w-full rounded-full border border-grey-300 px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200 dark:border-gray-700 dark:bg-grey-800 dark:text-grey-100 "
           aria-label="Search movies"
         />
 

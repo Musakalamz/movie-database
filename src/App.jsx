@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 
@@ -33,6 +33,7 @@ function App() {
 
       <main id="content" className="container mx-auto px-4 py-6">
         <SearchBar />
+        <Outlet />
       </main>
 
       <Footer />
