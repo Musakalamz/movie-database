@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { getMovie } from "../lib/omdb";
 
 export default function MovieCard({ movie }) {
+  console.log(movie);
   const { Poster, Title, Year, imdbID } = movie;
   const src = Poster && Poster !== "N/A" ? Poster : "/vite.svg";
 
