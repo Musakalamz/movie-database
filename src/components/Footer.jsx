@@ -70,6 +70,15 @@ function Footer() {
             </li>
           </ul>
         </div>
+
+        <div className="text-sm text-gray-600 md:text-right">
+          <div>&copy; {new Date().getFullYear()} Movie DB</div>
+          <div>Data by OMDb API</div>
+          <label className="mt-2 inline-flex items-center gap-2">
+            <input type="checkbox" />
+            <span>Analytics opt-in</span>
+          </label>
+        </div>
       </div>
     </footer>
   );

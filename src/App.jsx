@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Footer from "./components/Footer";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
         </div>
       </header>
 
-      <main id="content" className="container mx-auto px-4 py-6"></main>
+      <main id="content" className="container mx-auto px-4 py-6">
+        <SearchBar />
+      </main>
 
       <Footer />
     </div>
