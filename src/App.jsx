@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function App() {
   return (
@@ -19,7 +19,13 @@ function App() {
             </span>
           </Link>
 
-          <nav className="ml-auto flex items-center gap-6"></nav>
+          <nav className="ml-auto flex items-center gap-8">
+            <NavLink to="/">Home</NavLink>
+
+            <NavLink to="/">Favorites</NavLink>
+
+            <NavLink to="/">About</NavLink>
+          </nav>
         </div>
       </header>
     </div>
