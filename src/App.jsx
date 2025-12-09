@@ -1,22 +1,27 @@
-import SearchBar from "./components/SearchBar";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center gap-4">
-          <span className="text-xl font-semibold ">Movie</span>
-          <span className="text-gray-500">Movie Database</span>
+    <div className="min-h-screen bg-white dark:bg-gray-900 dark:text-grey-100 ">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus-z-50 bg-blue-600 text-white py=2 px-3 rounded"
+      >
+        Skip to content
+      </a>
+
+      <header className="sticky top-0  z-30 bg-white dark:bg-gray-900 border-b shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex items-center gap-6">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="text-xl font-semibold"> Movie DB</span>
+            <span className="hidden sm:inline text-gray-500">
+              Search & Details
+            </span>
+          </Link>
+
+          <nav className="ml-auto flex items-center gap-6"></nav>
         </div>
       </header>
-
-      <main className="container mx-auto px-4 py-6">
-        <SearchBar />
-      </main>
-
-      <footer className="container mx-auto px-4 py-8  text-sm text-gray-500">
-        2025
-      </footer>
     </div>
   );
 }

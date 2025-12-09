@@ -4,10 +4,8 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "*", element: <div className="p-6">Not Found</div> },
-]);
+const router = createBrowserRouter([{ path: "/", element: <App /> }]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
