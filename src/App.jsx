@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           </nav>
         </div>
       </header>
+
+      <main id="content" className="container mx-auto px-4 py-6"></main>
+
+      <Footer />
     </div>
   );
 }
