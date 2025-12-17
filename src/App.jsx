@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 import Navbar from "./components/Navbar";
+import Logo from "./components/Logo";
 
 function App() {
   return (
@@ -15,13 +16,7 @@ function App() {
 
       <header className="sticky top-0  z-30 bg-white dark:bg-gray-900 border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center gap-6">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-xl font-semibold"> Movie DB</span>
-            <span className="hidden sm:inline text-gray-500">
-              Search & Details
-            </span>
-          </Link>
-
+          <Logo />
           <Navbar />
         </div>
       </header>
