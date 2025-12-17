@@ -8,18 +8,14 @@ function buildUrl(params) {
 }
 
 async function request(url) {
-  if (!API_KEY) throw new Error("OMDB API KEY not set");
+  if (!API_KEY) throw new Error("OMDB API key is not set");
   if (cache.has(url)) return cache.get(url);
-
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(
-      `OMDB API request failed! ${response.status} ${response.statusText}`
-    );
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`OMDB API request failed: ${res.status} ${res.statusText}`);
   }
-
-  const data = await response.json();
-  if (data.Response === "false") {
+  const data = await res.json();
+  if (data.Response === "False") {
     throw new Error(data.Error || "OMDB API error");
   }
   cache.set(url, data);
