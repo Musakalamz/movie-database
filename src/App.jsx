@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -21,13 +22,7 @@ function App() {
             </span>
           </Link>
 
-          <nav className="ml-auto flex items-center gap-8">
-            <NavLink to="/">Home</NavLink>
-
-            <NavLink to="/">Favorites</NavLink>
-
-            <NavLink to="/">About</NavLink>
-          </nav>
+          <Navbar />
         </div>
       </header>
 

@@ -31,6 +31,14 @@ function Footer() {
                 About
               </Link>
             </li>
+            <li>
+              <Link
+                to="/newsletter"
+                className="text-gray-700 hover:text-blue-600"
+              >
+                Newsletter
+              </Link>
+            </li>
           </ul>
         </div>
         <div>
