@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Home, Favorite, About, Newsletter } from "./pages/index.js";
+import { Home, Favorite, About, Newsletter, NotFound } from "./pages/index.js";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +15,7 @@ const router = createBrowserRouter([
       { path: "favorites", element: <Favorite /> },
       { path: "about", element: <About /> },
       { path: "newsletter", element: <Newsletter /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

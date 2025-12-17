@@ -1,8 +1,8 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import Footer from "./components/Footer";
-import SearchBar from "./components/SearchBar";
-import Navbar from "./components/Navbar";
+import { Outlet } from "react-router-dom";
 import Logo from "./components/Logo";
+import Navbar from "./components/Navbar";
+import SearchBar from "./components/SearchBar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
