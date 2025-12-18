@@ -10,6 +10,7 @@ import {
   Newsletter,
   NotFound,
   SinglePageError,
+  MovieDetail,
 } from "./pages";
 import { HomeLoader } from "./loaders/homeLoader";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         loader: HomeLoader,
         errorElement: <SinglePageError />,
         element: <Home />,
+      },
+      {
+        path: "movie/:imdbID",
+        element: <MovieDetail />,
       },
       {
         path: "favorites",
