@@ -1,11 +1,9 @@
 import { useLoaderData } from "react-router-dom";
+import MovieList from "../components/MovieList";
 
 function Home() {
-  const { movies, query } = useLoaderData();
-
-  console.log(movies, query);
-
-  return <div>Home Page</div>;
+  const { movies } = useLoaderData();
+  return <MovieList movies={movies} />;
 }
 
 export default Home;
