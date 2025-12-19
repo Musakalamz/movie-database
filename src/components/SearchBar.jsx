@@ -3,7 +3,7 @@ import { Form, useSearchParams, useSubmit } from "react-router-dom";
 function SearchBar() {
   const [searchParams] = useSearchParams();
   const submit = useSubmit();
-
+  
   const q = searchParams.get("s") || "";
   const type = searchParams.get("type") || "";
   const year = searchParams.get("y") || "";

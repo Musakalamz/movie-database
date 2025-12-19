@@ -51,10 +51,7 @@ export default function MovieDetails() {
 
   if (navigation.state === "loading") {
     // If navigating back to home or favorite, show grid skeleton
-    if (
-      navigation.location.pathname === "/" ||
-      navigation.location.pathname === "/favorite"
-    ) {
+    if (navigation.location.pathname === "/" || navigation.location.pathname === "/favorite") {
       return <SkeletonGrid />;
     }
     // Otherwise show details skeleton (refreshing or similar)
