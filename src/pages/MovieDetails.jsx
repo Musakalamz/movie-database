@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
 
@@ -38,19 +38,6 @@ export default function MovieDetails() {
   } = movie;
 
   const imgSrc = Poster && Poster !== "N/A" ? Poster : "/vite.svg";
-  
-  // Rating logic (kept separate as requested previously)
-  const storageKey = `mdbrating:${imdbID}`;
-  const [userRating, setUserRating] = useState(0);
-  useEffect(() => {
-    const v = Number(localStorage.getItem(storageKey) || 0);
-    if (!Number.isNaN(v)) setUserRating(Math.max(0, Math.min(5, v)));
-  }, [storageKey]);
-
-  function handleRate(n) {
-    setUserRating(n);
-    localStorage.setItem(storageKey, String(n));
-  }
 
   useEffect(() => {
     document.title = `${Title} | Movie DB`;
@@ -134,8 +121,9 @@ export default function MovieDetails() {
             </div>
           )}
         </div>
+      </div>
 
-        <p className="text-gray-800 dark:text-gray-200">{Plot}</p>
+      <p className="text-gray-800 dark:text-gray-200">{Plot}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border p-4 bg-white dark:bg-gray-800">
