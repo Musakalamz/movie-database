@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 
 export default function MovieDetails() {
@@ -25,6 +26,18 @@ export default function MovieDetails() {
   } = movie;
 
   const imgSrc = Poster && Poster !== "N/A" ? Poster : "/vite.svg";
+
+  useEffect(() => {
+    document.title = `${Title} | Movie DB`;
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = "/movie-cam.svg";
+    }
+    return () => {
+      document.title = "Movie DB";
+      if (link) link.href = "/movie.svg";
+    };
+  }, [Title]);
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
