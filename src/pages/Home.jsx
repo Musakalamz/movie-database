@@ -1,9 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import MovieList from "../components/MovieList";
+import Pagination from "../components/Pagination";
 import { useEffect } from "react";
 
 function Home() {
-  const { movies } = useLoaderData();
+  const { movies, totalResults, page } = useLoaderData();
+  const [_, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     document.title = "Movie DB";
@@ -11,7 +13,28 @@ function Home() {
     if (link) link.href = "/movie.svg";
   }, []);
 
-  return <MovieList movies={movies} />;
+  const totalPages = Math.ceil((Number(totalResults) || 0) / 10);
+
+  function handlePageChange(newPage) {
+    setSearchParams((prev) => {
+      prev.set("page", newPage);
+      return prev;
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  return (
+    <div>
+      <MovieList movies={movies} />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
+    </div>
+  );
 }
 
 export default Home;
