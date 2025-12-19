@@ -1,10 +1,8 @@
 import { Form, useSearchParams, useSubmit } from "react-router-dom";
-import { useEffect, useRef } from "react";
 
 function SearchBar() {
   const [searchParams] = useSearchParams();
   const submit = useSubmit();
-  const timeoutRef = useRef(null);
 
   const q = searchParams.get("s") || "";
   const type = searchParams.get("type") || "";

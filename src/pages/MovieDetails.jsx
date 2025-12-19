@@ -10,23 +10,6 @@ export default function MovieDetails() {
   const favorite = isFavorite(movie.imdbID);
   const navigation = useNavigation();
 
-  if (navigation.state === "loading") {
-    // If navigating back to home or favorite, show grid skeleton
-    if (navigation.location.pathname === "/" || navigation.location.pathname === "/favorite") {
-      return <SkeletonGrid />;
-    }
-    // Otherwise show details skeleton (refreshing or similar)
-    return <SkeletonDetails />;
-  }
-
-  function toggleFavorite() {
-    if (favorite) {
-      removeFavorite(movie.imdbID);
-    } else {
-      addFavorite(movie);
-    }
-  }
-
   const {
     Title,
     Year,
@@ -52,16 +35,31 @@ export default function MovieDetails() {
   const imgSrc = Poster && Poster !== "N/A" ? Poster : "/vite.svg";
 
   useEffect(() => {
-    document.title = `${Title} | Movie DB`;
-    const link = document.querySelector("link[rel~='icon']");
-    if (link) {
-      link.href = "/movie-cam.svg";
+    if (Title) {
+      document.title = `${Title} | Movie DB`;
+      const link = document.querySelector("link[rel~='icon']");
+      if (link) {
+        link.href = "/movie-cam.svg";
+      }
     }
     return () => {
       document.title = "Movie DB";
+      const link = document.querySelector("link[rel~='icon']");
       if (link) link.href = "/movie.svg";
     };
   }, [Title]);
+
+  if (navigation.state === "loading") {
+    // If navigating back to home or favorite, show grid skeleton
+    if (
+      navigation.location.pathname === "/" ||
+      navigation.location.pathname === "/favorite"
+    ) {
+      return <SkeletonGrid />;
+    }
+    // Otherwise show details skeleton (refreshing or similar)
+    return <SkeletonDetails />;
+  }
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
