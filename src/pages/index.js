@@ -4,4 +4,5 @@ export { default as Favorite } from "./Favorite";
 export { default as Newsletter } from "./Newsletter";
 export { default as NotFound } from "./NotFound";
 export { default as SinglePageError } from "./SinglePageError";
-export { default as MovieDetail } from "./MovieDetail";
+export { default as MovieDetails } from "./MovieDetails";
+export { default as MovieDetail } from "./MovieDetails";
