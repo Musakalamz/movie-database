@@ -1,8 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
+import { useFavorites } from "../context/FavoritesContext";
 
 export default function MovieDetails() {
   const { movie } = useLoaderData();
+  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
+  const favorite = isFavorite(movie.imdbID);
+
+  function toggleFavorite() {
+    if (favorite) {
+      removeFavorite(movie.imdbID);
+    } else {
+      addFavorite(movie);
+    }
+  }
+
   const {
     Title,
     Year,
@@ -26,6 +38,19 @@ export default function MovieDetails() {
   } = movie;
 
   const imgSrc = Poster && Poster !== "N/A" ? Poster : "/vite.svg";
+  
+  // Rating logic (kept separate as requested previously)
+  const storageKey = `mdbrating:${imdbID}`;
+  const [userRating, setUserRating] = useState(0);
+  useEffect(() => {
+    const v = Number(localStorage.getItem(storageKey) || 0);
+    if (!Number.isNaN(v)) setUserRating(Math.max(0, Math.min(5, v)));
+  }, [storageKey]);
+
+  function handleRate(n) {
+    setUserRating(n);
+    localStorage.setItem(storageKey, String(n));
+  }
 
   useEffect(() => {
     document.title = `${Title} | Movie DB`;
@@ -73,9 +98,36 @@ export default function MovieDetails() {
               {Year} • {Type?.toUpperCase()} • {Runtime}
             </p>
           </div>
-          {imdbRating && (
-            <div className="text-sm">
-              <span className="font-semibold">IMDb</span>{" "}
+          <div className="flex flex-col items-end gap-2">
+            <button
+              onClick={toggleFavorite}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-md border transition-colors ${
+                favorite
+                  ? "bg-red-50 border-red-200 text-red-600 hover:bg-red-100"
+                  : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill={favorite ? "currentColor" : "none"}
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+              <span className="text-sm font-medium">
+                {favorite ? "Saved" : "Favorite"}
+              </span>
+            </button>
+            {imdbRating && (
+              <div className="text-sm">
+                <span className="font-semibold">IMDb</span>{" "}
               <span className="inline-block rounded bg-yellow-100 px-2 py-1">
                 {imdbRating}
               </span>
