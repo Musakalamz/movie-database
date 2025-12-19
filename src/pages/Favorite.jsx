@@ -1,9 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import { useFavorites } from "../context/FavoritesContext";
+import SkeletonGrid from "../components/SkeletonGrid";
+import SkeletonDetails from "../components/SkeletonDetails";
 
 export default function Favorite() {
   const { favorites, removeFavorite } = useFavorites();
+  const navigation = useNavigation();
+
+  if (navigation.state === "loading") {
+    // If navigating to a movie details page, show the details skeleton
+    if (navigation.location.pathname.startsWith("/movie/")) {
+      return <SkeletonDetails />;
+    }
+    // Otherwise show the grid skeleton
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between border-b pb-4 dark:border-gray-700 animate-pulse">
+          <div className="space-y-2">
+            <div className="h-8 w-48 bg-gray-200 dark:bg-gray-700 rounded" />
+            <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded" />
+          </div>
+        </div>
+        <SkeletonGrid count={8} />
+      </div>
+    );
+  }
 
   if (favorites.length === 0) {
     return (
@@ -13,8 +35,8 @@ export default function Favorite() {
           No favorites yet
         </h2>
         <p className="mt-2 text-gray-600 dark:text-gray-400 max-w-sm">
-          You haven't added any movies to your watchlist. Browse movies and click
-          the heart icon to save them here.
+          You haven't added any movies to your watchlist. Browse movies and
+          click the heart icon to save them here.
         </p>
         <Link
           to="/"
@@ -34,7 +56,8 @@ export default function Favorite() {
             Your Favorites
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {favorites.length} {favorites.length === 1 ? "movie" : "movies"} saved
+            {favorites.length} {favorites.length === 1 ? "movie" : "movies"}{" "}
+            saved
           </p>
         </div>
       </header>

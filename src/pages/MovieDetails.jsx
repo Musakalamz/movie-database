@@ -1,11 +1,23 @@
 import { useEffect } from "react";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useNavigation } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
+import SkeletonDetails from "../components/SkeletonDetails";
+import SkeletonGrid from "../components/SkeletonGrid";
 
 export default function MovieDetails() {
   const { movie } = useLoaderData();
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const favorite = isFavorite(movie.imdbID);
+  const navigation = useNavigation();
+
+  if (navigation.state === "loading") {
+    // If navigating back to home or favorite, show grid skeleton
+    if (navigation.location.pathname === "/" || navigation.location.pathname === "/favorite") {
+      return <SkeletonGrid />;
+    }
+    // Otherwise show details skeleton (refreshing or similar)
+    return <SkeletonDetails />;
+  }
 
   function toggleFavorite() {
     if (favorite) {
@@ -115,15 +127,15 @@ export default function MovieDetails() {
             {imdbRating && (
               <div className="text-sm">
                 <span className="font-semibold">IMDb</span>{" "}
-              <span className="inline-block rounded bg-yellow-100 px-2 py-1">
-                {imdbRating}
-              </span>
-            </div>
-          )}
+                <span className="inline-block rounded bg-yellow-100 px-2 py-1">
+                  {imdbRating}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <p className="text-gray-800 dark:text-gray-200">{Plot}</p>
+        <p className="text-gray-800 dark:text-gray-200">{Plot}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border p-4 bg-white dark:bg-gray-800">
