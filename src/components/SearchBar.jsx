@@ -34,11 +34,13 @@ function SearchBar() {
     // or if the user is actively typing (we can check focus, but simpler logic is fine)
     if (query.trim().length < 3) {
       setSuggestions([]);
+      setIsSearching(false);
       return;
     }
 
+    setIsSearching(true); // Show loading immediately for better feedback
+
     const timeoutId = setTimeout(async () => {
-      setIsSearching(true);
       try {
         const data = await searchMovies(query, 1, { type: typeParam });
         if (data.Search) {
@@ -53,7 +55,7 @@ function SearchBar() {
       } finally {
         setIsSearching(false);
       }
-    }, 400);
+    }, 300); // Reduced debounce for snappier feel
 
     return () => clearTimeout(timeoutId);
   }, [query, typeParam]);
