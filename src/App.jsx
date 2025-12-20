@@ -1,12 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Logo from "./components/Logo";
 import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import Toast from "./components/Toast";
+import SkeletonGrid from "./components/SkeletonGrid";
+import SkeletonDetails from "./components/SkeletonDetails";
 
 function App() {
+  const navigation = useNavigation();
+
   return (
     <FavoritesProvider>
       <div className="min-h-screen bg-white dark:bg-gray-900 dark:text-grey-100 ">
@@ -25,7 +28,17 @@ function App() {
         </header>
 
         <main id="content" className="container mx-auto px-4 py-6">
-          <Outlet />
+          {navigation.state === "loading" ? (
+            navigation.location.pathname.startsWith("/movie/") ? (
+              <SkeletonDetails />
+            ) : navigation.location.pathname === "/movies" ? (
+              <SkeletonGrid />
+            ) : (
+              <Outlet />
+            )
+          ) : (
+            <Outlet />
+          )}
         </main>
 
         <Footer />
