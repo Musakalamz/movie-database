@@ -87,7 +87,7 @@ function SearchBar() {
     <div className="w-full flex flex-col items-center mb-8 relative z-50">
       <Form
         method="get"
-        action="/"
+        action="/movies"
         className="w-full flex flex-col items-center"
         role="search"
         autoComplete="off"

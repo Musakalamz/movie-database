@@ -8,6 +8,8 @@ function Navbar() {
     <nav className="ml-auto flex items-center gap-8">
       <NavLink to="/">Home</NavLink>
 
+      <NavLink to="/movies">Movies</NavLink>
+
       <NavLink to="/favorites" className="relative flex items-center gap-1">
         Favorites
         {favorites.length > 0 && (

@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   Home,
+  Movies,
   Favorite,
   About,
   Newsletter,
@@ -22,9 +23,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Home />,
+      },
+      {
+        path: "movies",
         loader: HomeLoader,
         errorElement: <SinglePageError />,
-        element: <Home />,
+        element: <Movies />,
       },
       {
         path: "movie/:imdbID",
