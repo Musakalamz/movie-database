@@ -18,6 +18,8 @@ function Movies() {
 
   useEffect(() => {
     document.title = "Browse Movies | Movie DB";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) link.href = "/movie.svg";
   }, []);
 
   const totalPages = Math.ceil((Number(totalResults) || 0) / 10);

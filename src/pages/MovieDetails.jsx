@@ -39,13 +39,13 @@ export default function MovieDetails() {
       document.title = `${Title} | Movie DB`;
       const link = document.querySelector("link[rel~='icon']");
       if (link) {
-        link.href = "/movie-cam.svg";
+        link.href = "/movie.svg";
       }
     }
     return () => {
       document.title = "Movie DB";
       const link = document.querySelector("link[rel~='icon']");
-      if (link) link.href = "/movie.svg";
+      if (link) link.href = "/movie-home.svg";
     };
   }, [Title]);
 
