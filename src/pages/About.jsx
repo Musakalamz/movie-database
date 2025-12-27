@@ -27,7 +27,7 @@ export default function About() {
             Start Browsing
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/Musakalamz/movie-database"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 text-base font-medium rounded-full text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-transform hover:scale-105"
