@@ -83,7 +83,7 @@ function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-xl md:hidden flex flex-col p-4 space-y-2 z-50 animate-fade-in-up">
+        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-xl md:hidden flex flex-col p-4 space-y-2 z-[100] animate-fade-in-up">
           {links.map((link) => (
             <NavLink
               key={link.to}

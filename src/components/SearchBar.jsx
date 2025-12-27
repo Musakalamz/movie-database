@@ -86,7 +86,7 @@ function SearchBar() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center mb-8 relative z-50">
+    <div className="w-full flex flex-col items-center mb-8 relative">
       <Form
         method="get"
         action="/movies"
@@ -175,7 +175,7 @@ function SearchBar() {
 
           {/* Autocomplete Dropdown */}
           {showSuggestions && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200">
               <ul className="py-2 divide-y divide-gray-100 dark:divide-gray-700">
                 {suggestions.map((movie) => (
                   <li key={movie.imdbID}>
