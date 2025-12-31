@@ -1,4 +1,5 @@
 import { Link, useNavigation } from "react-router-dom";
+import {useEffect} from "react";
 import MovieCard from "../components/MovieCard";
 import { useFavorites } from "../context/FavoritesContext";
 import SkeletonGrid from "../components/SkeletonGrid";
@@ -7,6 +8,12 @@ import SkeletonDetails from "../components/SkeletonDetails";
 export default function Favorite() {
   const { favorites, removeFavorite } = useFavorites();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    document.title = "Favorite | Movie DB";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) Link.href = "/favorite.svg";
+  }, [])
 
   if (navigation.state === "loading") {
     // If navigating to a movie details page, show the details skeleton

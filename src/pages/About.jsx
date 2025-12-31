@@ -4,6 +4,8 @@ import { useEffect } from "react";
 export default function About() {
   useEffect(() => {
     document.title = "About | Movie DB";
+    const link = document.querySelector("link[rel~='icon']")
+    if (link) Link.href = "/about.svg"
   }, []);
 
   return (

@@ -1,4 +1,13 @@
+import {Link} from "react-router-dom";
+import {useEffect} from "react";
+
 function Newsletter() {
+  useEffect(() => {
+    document.title = "Newsletter | Movie DB";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) Link.href = "/favorite.svg";
+  }, [])
+
   return (
     <section className="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow p-6 space-y-4">
       <div>
